@@ -17,7 +17,7 @@ def match_release_phrase(message, phrase):
     :returns: a ReleaseTask if we matched, or None if no release task.
     """
     botnick = settings.NICK
-    pattern = re.compile('%s[,:]? (.+) %s$' % (botnick, phrase))
+    pattern = re.compile('%s[,:]? (.+) %s\??$' % (botnick, phrase))
     m = re.match(pattern, message)
     if not m:
         return

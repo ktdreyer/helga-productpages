@@ -10,6 +10,7 @@ values = [
     ('helga: osp 13 release date', 'rhosp-13.0'),
     ('helga: osp 13 date', 'rhosp-13.0'),
     ('helga: rhcs 3.0 z2 date', 'ceph-3-0'),
+    ('helga: rhcs 3.0 z2 date?', 'ceph-3-0'),
 ]
 
 
