@@ -16,7 +16,7 @@ def match(message):
 @defer.inlineCallbacks
 def describe_schedule(pp, release_task, client, channel, nick):
     """
-    Link to this a release's schedule in a message.
+    Link to this release's schedule in a message.
     """
     try:
         release = yield pp.release(release_task.shortname)

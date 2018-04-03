@@ -19,7 +19,7 @@ def match(message):
 @defer.inlineCallbacks
 def describe_milestone(pp, release_task, client, channel, nick):
     """
-    Describe this a release's milestone date in a message.
+    Describe this release's milestone date in a message.
     """
     try:
         release = yield pp.release(release_task.shortname)
