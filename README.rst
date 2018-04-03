@@ -31,7 +31,7 @@ https://pp.engineering.redhat.com.)
 
 Installation
 ------------
-This Bugzilla plugin is `available from PyPI
+This Product Pages plugin is `available from PyPI
 <https://pypi.python.org/pypi/helga-productpages>`_, so you can simply install
 it with ``pip``::
 
