@@ -53,7 +53,7 @@ def construct_message(nick, release, milestone, task_date):
     Construct message string about this release's ship date.
     """
     today = datetime.date.today()
-    days = networkdays(from_date=today, to_date=task_date)
+    days = networkdays(from_date=today, to_date=task_date) - 1
     description = describe_date_from_today(task_date)
     tmpl = '{nick}, {name} {milestone} {verb} {description}'
     verb = 'is'
@@ -69,7 +69,7 @@ def describe_date_from_today(to_date):
     """
     datestr = to_date.strftime("%a %b %-d, %Y")
     today = datetime.date.today()
-    days = networkdays(from_date=today, to_date=to_date)
+    days = networkdays(from_date=today, to_date=to_date) - 1
     if days > 0:
         tmpl = 'on {date} ({days} business days from today)'
     if days == 0:
