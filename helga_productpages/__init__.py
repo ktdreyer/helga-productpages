@@ -6,7 +6,7 @@ from helga import log
 from helga_productpages.actions import release_date
 from helga_productpages.actions import release_schedule
 
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 
 logger = log.getLogger(__name__)
