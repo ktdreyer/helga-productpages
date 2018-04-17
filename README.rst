@@ -44,8 +44,8 @@ where you are running Helga, clone a copy of this repository from GitHub and
 run
 ``python setup.py develop``.
 
-**Note**: This authentication feature can expose private information (milestone
-dates) about Red Hat products. If you use this feature, be sure that the
-networks to which Helga connects are restricted. Everyone in Helga's channels
-will see the private information, so the assumption is that they already have
-rights to read the data on Product Pages.
+**Note**: This plugin can expose private information (milestone dates) about
+Red Hat products. If you use this plugin, be sure that the networks to which
+Helga connects are restricted. Everyone in Helga's channels will see the
+private information, so the assumption is that they already have rights to
+read the data on Product Pages.
