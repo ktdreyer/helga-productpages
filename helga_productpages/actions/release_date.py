@@ -70,11 +70,16 @@ def describe_date_from_today(to_date):
     datestr = to_date.strftime("%a %b %-d, %Y")
     today = datetime.date.today()
     days = networkdays(from_date=today, to_date=to_date) - 1
-    if days > 0:
+    if days == 1:
+        tmpl = 'on {date} (one business day from today)'
+    if days > 1:
         tmpl = 'on {date} ({days} business days from today)'
     if days == 0:
         tmpl = 'today'
-    if days < 0:
+    if days == -1:
+        days = -days
+        tmpl = 'on {date} (one business day ago)'
+    if days < -1:
         days = -days
         tmpl = 'on {date} ({days} business days ago)'
     return tmpl.format(date=datestr, days=days)
