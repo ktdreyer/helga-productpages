@@ -101,8 +101,8 @@ class ReleaseTask(object):
     @staticmethod
     def canonical_version(product, version):
         """ Canonicalize some common ways to reference a product's version. """
-        # Ceph and RHEL versions are of the form "3-0"
-        if product == 'ceph' or product == 'rhel':
+        # Ceph, Cloudforms, and RHEL versions are of the form "3-0"
+        if product in ('ceph', 'cloudforms', 'rhel'):
             version = version.replace('.', '-', 1)
             # If the user said eg. "RHCS 3", normalize version to "3-0"
             if '-' not in version:
