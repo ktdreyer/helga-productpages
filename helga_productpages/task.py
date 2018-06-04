@@ -86,6 +86,7 @@ class ReleaseTask(object):
     def canonical_product(product):
         """ Canonicalize some common ways to reference a product. """
         product_patterns = (
+          (r'^cfme', 'cloudforms'),
           (r'^rhceph', 'ceph'),
           (r'^rh ceph', 'ceph'),
           (r'^rhcs', 'ceph'),
