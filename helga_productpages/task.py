@@ -29,6 +29,8 @@ class ReleaseTask(object):
             return milestones.GA
         if self.milestone == 'dev freeze':
             return milestones.DEV_FREEZE
+        if self.milestone == 'devel freeze':
+            return milestones.DEV_FREEZE
         # Some product-specific things:
         if self.product == 'ceph' and re.match('z\d+', self.milestone):
             return re.compile(r'.*%s GA' % self.milestone, flags=re.IGNORECASE)
