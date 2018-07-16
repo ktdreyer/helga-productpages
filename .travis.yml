@@ -3,6 +3,8 @@ sudo: false
 python:
     - 2.7
     - 3.7
+allow_failures:
+    - python: 3.7
 install:
     # We have to upgrade pytest explicitly here due to the following:
     # * Travis CI's virtualenv already comes with pytest preinstalled.
