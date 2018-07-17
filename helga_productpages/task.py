@@ -62,11 +62,10 @@ class ReleaseTask(object):
     def split(text):
         """ Split a user's release text into product, version, milestone. """
         text = text.replace('-', ' ')
-        try:
-            parts = text.split(' ', 2)
-        except ValueError:
+        parts = text.split(' ', 2)
+        if len(parts) == 1:
             return (None, None, None)
-        if len(parts) == 2:
+        elif len(parts) == 2:
             (product, version) = parts
             milestone = 'ga'
         elif len(parts) == 3:
