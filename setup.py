@@ -56,10 +56,11 @@ setup(name="helga-productpages",
       install_requires=[
           'helga',
           'rhcalendar',
-          'txproductpages',
+          'txproductpages>=1.1.0',
       ],
       tests_require=[
           'pytest',
+          'pytest-twisted',
       ],
       entry_points=dict(
           helga_plugins=[

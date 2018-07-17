@@ -1,6 +1,7 @@
 from twisted.internet import defer
 from txproductpages.exceptions import ReleaseNotFoundException
 from helga_productpages.util import match_release_phrase
+from helga_productpages.util import release_not_found
 
 
 def match(message):
@@ -21,8 +22,7 @@ def describe_schedule(pp, release_task, client, channel, nick):
     try:
         release = yield pp.release(release_task.shortname)
     except ReleaseNotFoundException:
-        msg = '%s, I could not find release %s in pp.engineering.redhat.com' \
-              % (nick, release_task.shortname)
+        msg = yield release_not_found(pp, release_task, nick)
         defer.returnValue(msg)
     url = pp.schedule_url(release_task.shortname)
     tmpl = ('{nick}, {name} schedule: {url}')

@@ -3,6 +3,7 @@ from twisted.internet import defer
 from txproductpages.exceptions import ReleaseNotFoundException
 from txproductpages.exceptions import TaskNotFoundException
 from helga_productpages.util import match_release_phrase
+from helga_productpages.util import release_not_found
 from rhcalendar import networkdays
 
 
@@ -24,8 +25,7 @@ def describe_milestone(pp, release_task, client, channel, nick):
     try:
         release = yield pp.release(release_task.shortname)
     except ReleaseNotFoundException:
-        msg = '%s, I could not find release %s in pp.engineering.redhat.com' \
-              % (nick, release_task.shortname)
+        msg = yield release_not_found(pp, release_task, nick)
         defer.returnValue(msg)
     try:
         task_date = yield release.task_date(release_task.task_re)
