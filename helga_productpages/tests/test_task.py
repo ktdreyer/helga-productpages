@@ -24,3 +24,30 @@ values = [
 def test_from_text(test_input, expected):
     result = ReleaseTask.from_text(test_input)
     assert result == expected
+
+
+no_product_values = [
+    ('3.0',           ReleaseTask('ceph', '3-0', 'ga')),
+    ('3.0z5',         ReleaseTask('ceph', '3-0', 'z5')),
+    ('3.0z5 release', ReleaseTask('ceph', '3-0', 'z5')),
+]
+
+
+class FakeSettings(object):
+    """ Fake Helga settings with a DEFAULT_PRODUCT. """
+    DEFAULT_PRODUCT = 'ceph'
+
+
+@pytest.mark.parametrize('test_input,expected', no_product_values)
+def test_from_text_default_product(monkeypatch, test_input, expected):
+    """ Test with settings.DEFAULT_PRODUCT """
+    monkeypatch.setattr('helga_productpages.task.settings', FakeSettings)
+    result = ReleaseTask.from_text(test_input)
+    assert result == expected
+
+
+@pytest.mark.parametrize('test_input,_', no_product_values)
+def test_from_text_no_default_product(monkeypatch, test_input, _):
+    """ Test with no DEFAULT_PRODUCT """
+    result = ReleaseTask.from_text(test_input)
+    assert result is None

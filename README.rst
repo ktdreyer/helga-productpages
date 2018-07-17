@@ -37,12 +37,22 @@ it with ``pip``::
 
   pip install helga-productpages
 
-You do not need to configure anything else in Helga's settings for this plugin.
-
 If you want to hack on the helga-productpages source code, in your virtualenv
 where you are running Helga, clone a copy of this repository from GitHub and
 run
 ``python setup.py develop``.
+
+
+Optional: Default product configuration
+---------------------------------------
+
+In your ``settings.py`` file (or whatever you pass to ``helga --settings``),
+you can specify a ``DEFAULT_PRODUCT``. For example::
+
+  DEFAULT_PRODUCT = 'ceph'
+
+If you omit the product when asking Helga for release dates, Helga will use
+this product value.
 
 
 Security

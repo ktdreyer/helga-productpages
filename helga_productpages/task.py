@@ -1,5 +1,6 @@
 import re
 from helga import log
+from helga import settings
 from txproductpages import milestones
 
 
@@ -64,10 +65,25 @@ class ReleaseTask(object):
         text = text.replace('-', ' ')
         parts = text.split(' ', 2)
         if len(parts) == 1:
-            return (None, None, None)
+            # We got a single word, like "3.0". If there's a default product,
+            # use that, otherwise return None.
+            if hasattr(settings, 'DEFAULT_PRODUCT'):
+                product = settings.DEFAULT_PRODUCT
+                version = text
+                milestone = 'ga'
+            else:
+                return (None, None, None)
         elif len(parts) == 2:
-            (product, version) = parts
-            milestone = 'ga'
+            # We got two words. Is the first word a product or a version?
+            # Product shortnames all start with an alpha character.
+            if re.match(r'[a-z]', parts[0]):
+                (product, version) = parts
+                milestone = 'ga'
+            elif hasattr(settings, 'DEFAULT_PRODUCT'):
+                product = settings.DEFAULT_PRODUCT
+                (version, milestone) = parts
+            else:
+                return (None, None, None)
         elif len(parts) == 3:
             (product, version, milestone) = parts
         else:
