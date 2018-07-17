@@ -1,6 +1,12 @@
 A Red Hat Product Pages plugin for helga chat bot
 =================================================
 
+.. image:: https://travis-ci.org/ktdreyer/helga-productpages.svg?branch=master
+             :target: https://travis-ci.org/ktdreyer/helga-productpages
+
+.. image:: https://badge.fury.io/py/helga-productpages.svg
+          :target: https://badge.fury.io/py/helga-productpages
+
 About
 -----
 
