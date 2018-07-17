@@ -76,6 +76,7 @@ class ReleaseTask(object):
         elif len(parts) == 2:
             # We got two words. Is the first word a product or a version?
             # Product shortnames all start with an alpha character.
+            # (Note "3scale_amp" is an exception to this rule, whoops.)
             if re.match(r'[a-z]', parts[0]):
                 (product, version) = parts
                 milestone = 'ga'
