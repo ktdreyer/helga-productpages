@@ -51,11 +51,11 @@ class ReleaseTask(object):
         """
         text = text.lower()
         (product, version, milestone) = ReleaseTask.split(text)
+        if product is None or version is None or milestone is None:
+            return None
         product = ReleaseTask.canonical_product(product)
         version = ReleaseTask.canonical_version(product, version)
         milestone = ReleaseTask.canonical_milestone(product, milestone)
-        if product is None or version is None or milestone is None:
-            return None
         return klass(product, version, milestone)
 
     @staticmethod
