@@ -124,6 +124,8 @@ class ReleaseTask(object):
         return milestone
 
     def __eq__(self, other):
+        if not isinstance(other, self.__class__):
+            return False
         if self.product != other.product:
             return False
         if self.version != other.version:
