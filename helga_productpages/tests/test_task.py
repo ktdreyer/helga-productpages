@@ -9,6 +9,7 @@ values = [
     ('RHCS 3.0 release', ReleaseTask('ceph',  '3-0',   'ga')),
     ('RHCS 3.0 z2',      ReleaseTask('ceph',  '3-0',   'z2')),
     ('RHCS 3.0z2',       ReleaseTask('ceph',  '3-0',   'z2')),
+    ('RHCS 3.0 z2 ga',   ReleaseTask('ceph',  '3-0',   'z2')),
     ('rhceph-3.0',       ReleaseTask('ceph',  '3-0',   'ga')),
     ('RHCEPH 3.0',       ReleaseTask('ceph',  '3-0',   'ga')),
     ('OSP 12 z2',        ReleaseTask('rhosp', '12.0',  'z2')),

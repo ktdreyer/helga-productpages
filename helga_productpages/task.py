@@ -136,6 +136,9 @@ class ReleaseTask(object):
     def canonical_milestone(product, milestone):
         if milestone == 'release':
             return 'ga'
+        # Normalize zstream milestones, eg. "z3 ga" to "z3"
+        if milestone.startswith('z') and milestone.endswith(' ga'):
+            return milestone[:-3]
         return milestone
 
     def __eq__(self, other):
