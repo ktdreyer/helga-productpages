@@ -151,7 +151,7 @@ setup(name="helga-productpages",
       install_requires=[
           'helga',
           'rhcalendar',
-          'txproductpages>=1.1.0',
+          'txproductpages>=1.2.0',
       ],
       tests_require=[
           'pytest',

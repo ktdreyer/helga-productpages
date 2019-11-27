@@ -1,6 +1,7 @@
 import datetime
 from twisted.internet import defer
 from txproductpages.exceptions import ReleaseNotFoundException
+from txproductpages.exceptions import NoTasksException
 from txproductpages.exceptions import TaskNotFoundException
 from helga_productpages.util import match_release_phrase
 from helga_productpages.util import release_not_found
@@ -29,6 +30,12 @@ def describe_milestone(pp, release_task, client, channel, nick):
         defer.returnValue(msg)
     try:
         task_date = yield release.task_date(release_task.task_re)
+    except NoTasksException:
+        tmpl = ('{nick}, there are no tasks in the {shortname} schedule '
+                'at {url}')
+        url = pp.schedule_url(release_task.shortname)
+        msg = tmpl.format(nick=nick, shortname=release_task.shortname, url=url)
+        defer.returnValue(msg)
     except TaskNotFoundException:
         # TODO: link to web ui for all tasks?
         tmpl = ('{nick}, I could not find a {milestone} task for '
