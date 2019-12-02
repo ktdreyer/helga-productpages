@@ -1,8 +1,6 @@
 import os
 import re
 import subprocess
-import sys
-from setuptools.command.test import test as TestCommand
 from setuptools import setup, find_packages, Command
 try:
     # Python 2 backwards compat
@@ -112,25 +110,6 @@ class ReleaseCommand(Command):
         subprocess.check_call(cmd)
 
 
-class PyTest(TestCommand):
-    user_options = [('pytest-args=', 'a', "Arguments to pass to py.test")]
-
-    def initialize_options(self):
-        TestCommand.initialize_options(self)
-        self.pytest_args = ''
-
-    def finalize_options(self):
-        TestCommand.finalize_options(self)
-        self.test_args = []
-        self.test_suite = True
-
-    def run_tests(self):
-        import pytest
-        args = 'helga_productpages/tests ' + self.pytest_args
-        errno = pytest.main(args.split())
-        sys.exit(errno)
-
-
 setup(name="helga-productpages",
       version=version,
       description='Red Hat Product Pages plugin for Helga',
@@ -153,14 +132,10 @@ setup(name="helga-productpages",
           'rhcalendar',
           'txproductpages>=1.2.0',
       ],
-      tests_require=[
-          'pytest',
-          'pytest-twisted',
-      ],
       entry_points=dict(
           helga_plugins=[
               'productpages = helga_productpages:helga_productpages',
           ],
       ),
-      cmdclass={'test': PyTest, 'bump': BumpCommand, 'release': ReleaseCommand},
+      cmdclass={'bump': BumpCommand, 'release': ReleaseCommand},
 )
