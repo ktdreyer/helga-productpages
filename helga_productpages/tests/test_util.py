@@ -1,4 +1,5 @@
 import pytest
+import pytest_twisted
 from helga_productpages.util import match_release_phrase
 from helga_productpages.util import release_not_found
 from helga_productpages.util import release_to_text
@@ -29,7 +30,7 @@ class MockPPConnection(Connection):
         return defer.succeed([release])
 
 
-@pytest.inlineCallbacks
+@pytest_twisted.inlineCallbacks
 def test_release_not_found():
     pp = MockPPConnection()
     release_task = ReleaseTask('fooproduct', '10.0', 'z99')
