@@ -110,32 +110,34 @@ class ReleaseCommand(Command):
         subprocess.check_call(cmd)
 
 
-setup(name="helga-productpages",
-      version=version,
-      description='Red Hat Product Pages plugin for Helga',
-      classifiers=['Development Status :: 4 - Beta',
-                   'License :: OSI Approved :: MIT License',
-                   'Intended Audience :: Developers',
-                   'Operating System :: POSIX',
-                   'Programming Language :: Python',
-                   'Topic :: Software Development',
-                   ],
-      keywords='irc bot productpages',
-      author='ken dreyer',
-      author_email='ktdreyer@ktdreyer.com',
-      url='https://github.com/ktdreyer/helga-productpages',
-      license='MIT',
-      long_description=LONG_DESCRIPTION,
-      packages=find_packages(),
-      install_requires=[
-          'helga',
-          'rhcalendar',
-          'txproductpages>=1.2.0',
+setup(
+    name="helga-productpages",
+    version=version,
+    description='Red Hat Product Pages plugin for Helga',
+    classifiers=[
+                 'Development Status :: 4 - Beta',
+                 'License :: OSI Approved :: MIT License',
+                 'Intended Audience :: Developers',
+                 'Operating System :: POSIX',
+                 'Programming Language :: Python',
+                 'Topic :: Software Development',
+    ],
+    keywords='irc bot productpages',
+    author='ken dreyer',
+    author_email='ktdreyer@ktdreyer.com',
+    url='https://github.com/ktdreyer/helga-productpages',
+    license='MIT',
+    long_description=LONG_DESCRIPTION,
+    packages=find_packages(),
+    install_requires=[
+        'helga',
+        'rhcalendar',
+        'txproductpages>=1.2.0',
+    ],
+    entry_points=dict(
+      helga_plugins=[
+          'productpages = helga_productpages:helga_productpages',
       ],
-      entry_points=dict(
-          helga_plugins=[
-              'productpages = helga_productpages:helga_productpages',
-          ],
-      ),
-      cmdclass={'bump': BumpCommand, 'release': ReleaseCommand},
+    ),
+    cmdclass={'bump': BumpCommand, 'release': ReleaseCommand},
 )
